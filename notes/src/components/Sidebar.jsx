@@ -10,7 +10,13 @@ export default function Sidebar(props) {
                 }`}
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
-                <h4 className="text-snippet">Note {index + 1}</h4>
+                <h4 className="text-snippet">{note.body.split('\n')[0].split("#")}</h4>
+
+                <button onClick={(event) => props.delete(event, note.id)}
+                    className="delete-btn"
+                >
+                    <i className="gg-trash trash-icon"></i>
+                </button>
             </div>
         </div>
     ))
@@ -18,7 +24,8 @@ export default function Sidebar(props) {
     return (
         <section className="pane sidebar">
             <div className="sidebar--header">
-                <h3>Notes</h3>
+                <i class='fab fa-markdown'></i>
+                <h3>Markdown Notes</h3>
                 <button className="new-note" onClick={props.newNote}>+</button>
             </div>
             {noteElements}
